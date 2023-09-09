@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-bu!9u6qn&h+24_x5-&=9pnbb9c0hc1v+n)pk_4qju6n-og4t3+"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', 'denscholar.pythonanywhere.com']
 
@@ -77,15 +77,12 @@ WSGI_APPLICATION = "API_stage_1.wsgi.application"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'hng_database', 
-        'USER': 'postgres',  
-        'PASSWORD': 'sunshine', 
-        'HOST': 'localhost',  
-        'PORT': 5432,
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
     }
 }
+
 
 # hng_database
 # Password validation
