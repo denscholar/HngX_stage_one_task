@@ -13,6 +13,8 @@ class ProjectOneAPIView(APIView):
         slack_name = request.GET.get("slack_name")
         track = request.GET.get("track")
 
+        new_slack_name = slack_name.lower().replace(' ', '_')
+
         # calculate trhe current day and UTC time
         current_day = datetime.date.today().strftime("%A")
         utc_time = datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
@@ -20,18 +22,18 @@ class ProjectOneAPIView(APIView):
         # Create an instance of the model with the calculated data
 
         data = {
-            "slack_name": slack_name,
+            "slack_name": new_slack_name,
             "current_day": current_day,
             "utc_time": utc_time,
             "track": track,
-            "github_file_url": "hello",
-            "github_repo_url": "hell",
+            "github_file_url": "https://github.com/denscholar/HngX_stage_one_task/tree/main",
+            "github_repo_url": "https://github.com/denscholar/HngX_stage_one_task.git",
             "status_code": 200,
         }
 
         # create the data
-        new_data = ProjectOne(data)
+        data_instance = ProjectOne(**data)
 
-        serializer = ProjectOneSerializer(data=new_data)
+        serializer = ProjectOneSerializer(instance=data_instance)
         response = {"data": serializer.data}
         return Response(data=response, status=status.HTTP_200_OK)
