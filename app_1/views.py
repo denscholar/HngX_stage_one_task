@@ -10,10 +10,10 @@ import datetime
 class ProjectOneAPIView(APIView):
     def get(self, request, *args, **kwargs):
         # extra the query parameter
-        slack_name = request.GET.get("slack_name")
-        track = request.GET.get("track")
+        slack_name = request.GET.get("slack_name", "")
+        track = request.GET.get("track", "")
 
-        new_slack_name = slack_name.lower().replace(' ', '_')
+        slack_name = slack_name.lower().replace(' ', '_')
 
         # calculate trhe current day and UTC time
         current_day = datetime.date.today().strftime("%A")
@@ -22,7 +22,7 @@ class ProjectOneAPIView(APIView):
         # Create an instance of the model with the calculated data
 
         data = {
-            "slack_name": new_slack_name,
+            "slack_name": slack_name,
             "current_day": current_day,
             "utc_time": utc_time,
             "track": track,
