@@ -13,7 +13,7 @@ class ProjectOneAPIView(APIView):
         slack_name = request.GET.get("slack_name", "")
         track = request.GET.get("track", "")
 
-        slack_name = slack_name.lower().replace(' ', '_')
+        slack_name = slack_name.lower().replace(" ", "_")
 
         # calculate trhe current day and UTC time
         current_day = datetime.date.today().strftime("%A")
